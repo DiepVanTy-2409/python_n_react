@@ -1,0 +1,11 @@
+import os
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+FPT_SHOP_API_KEY = os.getenv('FPT_SHOP_API_KEY')
+API_BASE_URL = os.getenv('API_BASE_URL')
+API_KEY_SAVE_NEW_PRODUCTS = API_BASE_URL + os.getenv('API_KEY_SAVE_NEW_PRODUCTS')
+API_KEY_GET_PRODUCT_IDS = API_BASE_URL + os.getenv('API_KEY_GET_PRODUCT_IDS')
+NUMBER_OF_PRODUCTS_PER_PAGE = int(os.getenv('NUMBER_OF_PRODUCTS_PER_PAGE'))

@@ -1,0 +1,44 @@
+version: '4.29.0'
+services:
+  mysql:
+    container_name: mysql_container
+    build: ./mysql 
+    ports:
+      - "6603:3306"
+    networks:
+      - my_docker_net
+  mysql_api:
+    container_name: mysql_api_container
+    build: ./mysql_api
+    volumes:
+      - ./mysql_api:/api
+    ports: 
+      - "5000:5000" 
+    networks:
+      - my_docker_net
+  data_crawling:
+    container_name: data_crawling_container
+    build: ./data_crawling
+    volumes:
+      - ./data_crawling:/app
+    ports:
+      - "8000:8000"
+    networks:
+      - my_docker_net
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+
+  search_webpage:
+    container_name: search_webpage_container
+    build: ./search_webpage
+    # volumes:
+    #   - ./search_webpage:/app
+    ports:
+      - "3000:3000"
+    networks:
+      - my_docker_net
+
+networks:
+  my_docker_net:
+    driver: bridge
+
